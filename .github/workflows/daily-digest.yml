@@ -1,0 +1,40 @@
+name: Daily AI & Robotics Digest
+
+on:
+  schedule:
+    # 01:30 UTC = 07:00 AM IST (Kolkata). Adjust if you want a different wake-up time.
+    - cron: '30 1 * * *'
+  workflow_dispatch: {}   # lets you manually trigger a run from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run digest agent
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python digest_agent.py
+
+      - name: Commit updated state & output
+        run: |
+          git config user.name "digest-bot"
+          git config user.email "digest-bot@users.noreply.github.com"
+          git add state.json output/digest.html
+          git diff --quiet --cached || git commit -m "Update digest state [skip ci]"
+          git push
