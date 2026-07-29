@@ -1,0 +1,22 @@
+[
+  {"name": "OpenAI News", "url": "https://openai.com/news/rss.xml", "tier": "must-have"},
+  {"name": "Google Research Blog", "url": "https://research.google/blog/rss", "tier": "must-have"},
+  {"name": "MIT News - AI", "url": "https://news.mit.edu/rss/topic/artificial-intelligence", "tier": "must-have"},
+  {"name": "MIT News - Robotics", "url": "https://news.mit.edu/topic/robotics/rss", "tier": "must-have"},
+  {"name": "IEEE Spectrum - AI", "url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss", "tier": "must-have"},
+  {"name": "IEEE Spectrum - Robotics", "url": "https://spectrum.ieee.org/feeds/topic/robotics.rss", "tier": "must-have"},
+  {"name": "The Verge - AI", "url": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml", "tier": "must-have"},
+  {"name": "TechCrunch - AI", "url": "https://techcrunch.com/category/artificial-intelligence/feed/", "tier": "must-have"},
+  {"name": "MIT Tech Review - AI", "url": "https://www.technologyreview.com/topic/artificial-intelligence/feed/", "tier": "must-have"},
+  {"name": "Ars Technica - AI", "url": "https://arstechnica.com/ai/feed", "tier": "must-have"},
+  {"name": "arXiv cs.AI", "url": "https://rss.arxiv.org/rss/cs.AI", "tier": "must-have"},
+  {"name": "arXiv cs.LG", "url": "https://rss.arxiv.org/rss/cs.LG", "tier": "must-have"},
+  {"name": "arXiv cs.RO", "url": "https://rss.arxiv.org/rss/cs.RO", "tier": "must-have"},
+  {"name": "BAIR Blog", "url": "https://bair.berkeley.edu/blog/feed.xml", "tier": "must-have"},
+  {"name": "Robohub", "url": "https://robohub.org/feed", "tier": "recommended"},
+  {"name": "The Robot Report", "url": "https://www.therobotreport.com/feed/", "tier": "recommended"},
+  {"name": "NVIDIA Blog - Robotics", "url": "https://blogs.nvidia.com/blog/category/robotics/feed", "tier": "recommended"},
+  {"name": "VentureBeat - AI", "url": "https://venturebeat.com/category/ai/feed", "tier": "recommended"},
+  {"name": "The Guardian - AI", "url": "https://www.theguardian.com/technology/artificialintelligenceai/rss", "tier": "recommended"},
+  {"name": "ScienceDaily - Robotics", "url": "https://www.sciencedaily.com/rss/computerscience/robotics.xml", "tier": "recommended"}
+]
