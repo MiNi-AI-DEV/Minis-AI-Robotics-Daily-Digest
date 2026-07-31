@@ -2,8 +2,8 @@ name: Daily AI & Robotics Digest
 
 on:
   schedule:
-    # 01:30 UTC = 07:00 AM IST (Kolkata). Adjust if you want a different wake-up time.
-    - cron: '30 1 * * *'
+    # 22:00 UTC = 3:30 AM IST (Kolkata) the next day. Adjust if you want a different wake-up time.
+    - cron: '0 22 * * *'
   workflow_dispatch: {}   # lets you manually trigger a run from the Actions tab
 
 permissions:
