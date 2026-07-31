@@ -1,10 +1,12 @@
 # 🤖 Mini's AI Robotics Daily Digest
 
 An automated agent that:
-1. Pulls the latest AI & Robotics news from ~20 curated RSS feeds (arXiv, OpenAI, MIT, IEEE Spectrum, TechCrunch, etc. — see `feeds.json`).
-2. Uses **Gemini** to turn the raw articles into a short, readable daily digest.
-3. Renders a styled **HTML page**.
-4. Sends that page to **your Telegram chat** every morning via a bot, using **GitHub Actions** as the free scheduler — no server needed.
+1. Pulls the latest AI & Robotics news from ~20 curated RSS feeds (arXiv, OpenAI, MIT, IEEE Spectrum, TechCrunch, etc. — see `feeds.json`), up to 5 stories per site.
+2. Uses **Gemini** to write a title + a 5-6 line summary for every single story (one card per news item, not a grouped blob).
+3. Guarantees **at least 25 stories** per digest — if there isn't enough fresh news yet, it automatically widens the time window and re-checks until it has enough.
+4. **Never repeats a story** — every article is permanently tracked in `state.json`, so once it's sent, it's never sent again (not tomorrow, not next year).
+5. Renders a polished **HTML + CSS + JS page** with a live search box to filter stories.
+6. Sends that page to **your Telegram chat** every morning at **4:30 AM IST** via a bot, using **GitHub Actions** as the free scheduler — no server needed.
 
 ---
 
@@ -65,7 +67,7 @@ That's it — no keys are ever written into the code itself.
 
 1. Go to the **Actions** tab of your repo.
 2. GitHub may ask you to confirm you want to enable workflows — click **I understand my workflows, go ahead and enable them**.
-3. You'll see **"Daily AI & Robotics Digest"** listed. It's scheduled to run automatically at **01:30 UTC (07:00 AM IST)** every day.
+3. You'll see **"Daily AI & Robotics Digest"** listed. It's scheduled to run automatically at **23:00 UTC (4:30 AM IST)** every day.
 4. To test it right now instead of waiting: open the workflow → click **Run workflow** → **Run workflow** again to confirm.
 5. Check your Telegram — within a minute or two you should receive a `digest.html` file from your bot.
 
