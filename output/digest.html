@@ -3,146 +3,509 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mini's AI &amp; Robotics Daily Digest — Wednesday, 29 July 2026</title>
+<title>Mini's AI &amp; Robotics Daily Digest — Friday, 31 July 2026</title>
 <style>
   :root {
-    --bg: #0f1117;
-    --card: #171a23;
-    --text: #e8eaf0;
-    --muted: #9aa1b4;
-    --accent: #6ea8fe;
-    --accent2: #7ee0c3;
+    --bg: #0b0d13;
+    --bg-glow: radial-gradient(circle at 20% -10%, #1c2540 0%, #0b0d13 45%);
+    --card: #141824;
+    --card-border: #232a3d;
+    --text: #eef0f6;
+    --muted: #9aa1b8;
+    --accent: #7aa2ff;
+    --accent2: #6bf0c2;
+    --badge-bg: #1d2a44;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    margin: 0; padding: 0;
-    background: var(--bg);
+    margin: 0;
+    background: var(--bg-glow), var(--bg);
     color: var(--text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 60px; }
-  header { text-align: center; margin-bottom: 32px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 40px 20px 70px; }
+  header { text-align: center; margin-bottom: 28px; }
   header .kicker {
-    color: var(--accent2); text-transform: uppercase; letter-spacing: 2px;
-    font-size: 12px; font-weight: 600;
+    color: var(--accent2); text-transform: uppercase; letter-spacing: 3px;
+    font-size: 12px; font-weight: 700;
   }
-  header h1 { font-size: 28px; margin: 8px 0 4px; }
+  header h1 { font-size: 30px; margin: 10px 0 6px; }
   header .date { color: var(--muted); font-size: 14px; }
-  .card {
-    background: var(--card); border-radius: 14px; padding: 24px 28px;
-    margin-bottom: 20px; border: 1px solid #262a38;
+  .searchbar { margin: 28px auto 8px; max-width: 560px; position: relative; }
+  .searchbar input {
+    width: 100%; padding: 13px 16px 13px 42px; border-radius: 999px;
+    border: 1px solid var(--card-border); background: var(--card); color: var(--text);
+    font-size: 15px; outline: none; transition: border-color .15s ease;
   }
-  h2 { color: var(--accent); font-size: 20px; margin-top: 28px; }
-  h3 { color: var(--accent); font-size: 18px; margin-top: 22px; }
-  h4 { color: var(--accent2); font-size: 16px; }
-  ul { padding-left: 20px; }
-  li { margin-bottom: 10px; }
-  a { color: var(--accent2); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .source { color: var(--muted); font-size: 13px; }
-  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 30px; }
+  .searchbar input:focus { border-color: var(--accent); }
+  .searchbar::before {
+    content: "\1F50D"; position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    font-size: 14px; opacity: .7;
+  }
+  .count-line { text-align: center; color: var(--muted); font-size: 13px; margin-bottom: 26px; }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 680px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .card {
+    background: var(--card); border: 1px solid var(--card-border); border-radius: 16px;
+    padding: 20px 22px; display: flex; flex-direction: column; gap: 10px;
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .card-top { display: flex; justify-content: space-between; align-items: center; }
+  .badge {
+    background: var(--badge-bg); color: var(--accent2); font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px; letter-spacing: .3px;
+  }
+  .card-title { font-size: 18px; margin: 0; color: var(--text); }
+  .card-summary { font-size: 14.5px; color: var(--muted); margin: 0; flex-grow: 1; }
+  .card-link { font-size: 13.5px; font-weight: 600; color: var(--accent); text-decoration: none; margin-top: 4px; }
+  .card-link:hover { text-decoration: underline; }
+  .empty-state { text-align: center; color: var(--muted); padding: 40px 0; display: none; }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px; }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <div class="kicker">Mini's AI Robotics Daily Digest</div>
-    <h1>🤖 AI &amp; Robotics — Today's Briefing</h1>
-    <div class="date">Wednesday, 29 July 2026 · 61 stories from 14 sources</div>
+    <h1>AI &amp; Robotics — Today's Briefing</h1>
+    <div class="date">Friday, 31 July 2026</div>
   </header>
-  <div class="card">
-    <h3>OpenAI News</h3><ul>
-<li><a href="https://openai.com/index/scientific-computing-agentic-ai" target="_blank">Scientific computing in the age of agentic AI</a></li>
-</ul>
-<h3>IEEE Spectrum - AI</h3><ul>
-<li><a href="https://spectrum.ieee.org/siobahn-day-grady-ai-hbcu" target="_blank">Siobahn Day Grady Wants Everyone to Be AI Literate</a></li>
-<li><a href="https://spectrum.ieee.org/ai-digital-divide" target="_blank">AI Is Hyper-Scaling Digital Inequality</a></li>
-</ul>
-<h3>IEEE Spectrum - Robotics</h3><ul>
-<li><a href="https://spectrum.ieee.org/robot-finger" target="_blank">Robot Finger Feels in Color</a></li>
-</ul>
-<h3>The Verge - AI</h3><ul>
-<li><a href="https://www.theverge.com/ai-artificial-intelligence/971059/ai-artists-lawsuit-google-meta-anthropic" target="_blank">Artists are lawyering up against AI slop, and some are even winning</a></li>
-<li><a href="https://www.theverge.com/ai-artificial-intelligence/972441/openai-rogue-ai-agent-hacked-more-than-hugging-face" target="_blank">OpenAI’s rogue AI agent didn’t stop at hacking Hugging Face</a></li>
-<li><a href="https://www.theverge.com/ai-artificial-intelligence/972380/open-ai-hugging-face-hack-ai-safety-warning" target="_blank">We’re running out of reasons to ignore AI safety</a></li>
-<li><a href="https://www.theverge.com/ai-artificial-intelligence/972161/ai-leaders-us-government-openai-anthropic-google-meta" target="_blank">AI leaders sign a statement asking the government to do something about automated AI</a></li>
-<li><a href="https://www.theverge.com/ai-artificial-intelligence/972119/ai-stock-fall-google-capex" target="_blank">AI’s finally expensive enough to make Wall Street nervous</a></li>
-</ul>
-<h3>TechCrunch - AI</h3><ul>
-<li><a href="https://techcrunch.com/2026/07/29/hint-a-new-ai-startup-co-founded-by-martha-stewart-offers-an-ai-assistant-for-homeowners/" target="_blank">Hint, a new AI startup co-founded by Martha Stewart, offers an AI assistant for homeowners</a></li>
-<li><a href="https://techcrunch.com/2026/07/29/encore-ai-raises-30m-to-build-ai-agents-that-learn-from-customer-calls/" target="_blank">Encore AI raises $30M to build AI agents that learn from customer calls</a></li>
-<li><a href="https://techcrunch.com/2026/07/29/as-ai-content-floods-the-internet-pangram-raises-9m-to-detect-it/" target="_blank">As AI content floods the internet, Pangram raises $9M to detect it</a></li>
-<li><a href="https://techcrunch.com/2026/07/28/cyera-agrees-to-acquire-oasis-security-for-1b-to-safeguard-proliferating-ai-agents/" target="_blank">Cyera agrees to acquire Oasis Security for $1B to safeguard proliferating AI agents</a></li>
-<li><a href="https://techcrunch.com/2026/07/28/bot-detection-startup-spur-nabs-200m-from-insight/" target="_blank">Bot-detection startup Spur nabs $200M from Insight</a></li>
-<li><a href="https://techcrunch.com/2026/07/28/mcp-startup-runlayer-accuses-rippling-of-stealing-its-product-idea/" target="_blank">MCP startup Runlayer accuses Rippling of stealing its product idea</a></li>
-<li><a href="https://techcrunch.com/2026/07/28/sam-altman-is-ready-to-decelerate/" target="_blank">Sam Altman is ready to decelerate</a></li>
-<li><a href="https://techcrunch.com/2026/07/28/data-centers-may-face-temporary-power-cuts-to-prevent-blackouts-on-largest-us-grid/" target="_blank">Data centers may face temporary power cuts to prevent blackouts on largest US grid</a></li>
-</ul>
-<h3>MIT Tech Review - AI</h3><ul>
-<li><a href="https://www.technologyreview.com/2026/07/29/1140795/the-ai-hype-index-unsexy-ai/" target="_blank">The AI Hype Index: Unsexy AI</a></li>
-</ul>
-<h3>Ars Technica - AI</h3><ul>
-<li><a href="https://arstechnica.com/security/2026/07/anthropic-is-finding-bugs-faster-than-microsoft-can-fix-them/" target="_blank">Anthropic is finding bugs faster than Microsoft can fix them</a></li>
-<li><a href="https://arstechnica.com/science/2026/07/what-happens-when-you-put-ai-to-work-deciphering-lost-languages/" target="_blank">What happens when you put AI to work deciphering lost languages?</a></li>
-<li><a href="https://arstechnica.com/ai/2026/07/tested-google-synthid-works-great-but-labeling-ai-content-may-be-a-losing-game/" target="_blank">Google&#x27;s SynthID watermark is hard to break, but it doesn&#x27;t solve AI disinformation</a></li>
-<li><a href="https://arstechnica.com/security/2026/07/jfrog-tries-to-spin-openai-0-day-exploit-of-its-app-into-a-success-story/" target="_blank">We now have a better understanding how OpenAI hacked into Hugging Face</a></li>
-<li><a href="https://arstechnica.com/ai/2026/07/despite-ai-hype-googles-data-shows-workers-arent-automating-themselves-away/" target="_blank">Despite AI hype, Google&#x27;s data shows workers aren&#x27;t automating themselves away</a></li>
-</ul>
-<h3>arXiv cs.AI</h3><ul>
-<li><a href="https://arxiv.org/abs/2607.24758" target="_blank">Do Models Fake Alignment Without Clear Consequences?</a></li>
-<li><a href="https://arxiv.org/abs/2607.24759" target="_blank">Beyond Memory: A Templated Substrate for Heterogeneous Collaborative Knowledge Work with LLM Agents</a></li>
-<li><a href="https://arxiv.org/abs/2607.24762" target="_blank">Kernel Forge: An Agent Harness for LLM-based Generation and Optimization of CUDA Kernels</a></li>
-<li><a href="https://arxiv.org/abs/2607.24763" target="_blank">CaRE Compute-aware Remasking Evaluation Protocol for Masked Diffusion Language Models</a></li>
-<li><a href="https://arxiv.org/abs/2607.24764" target="_blank">GrocLM: Grocery Category Recommendation in E-Commerce with Large Language Models</a></li>
-<li><a href="https://arxiv.org/abs/2607.24766" target="_blank">Crystalis: Progressive Nucleation and Semantic Annealing for Coordinated Multi-View Visualization Generation</a></li>
-<li><a href="https://arxiv.org/abs/2607.24768" target="_blank">PATHFinder Agent for Tailored Prenatal Care</a></li>
-<li><a href="https://arxiv.org/abs/2607.24769" target="_blank">LLM Scheming Inversely Scales with Pretraining Language Coverage</a></li>
-</ul>
-<h3>arXiv cs.LG</h3><ul>
-<li><a href="https://arxiv.org/abs/2607.24875" target="_blank">FinAbstain: Uncertainty-Calibrated Multimodal RAG for Selective Financial Forecasting</a></li>
-<li><a href="https://arxiv.org/abs/2607.24880" target="_blank">Human Preference aligned Tabular Similarity</a></li>
-<li><a href="https://arxiv.org/abs/2607.24881" target="_blank">Behavior-Driven Explainability</a></li>
-<li><a href="https://arxiv.org/abs/2607.24885" target="_blank">Eliminating Propagation Delay: Attention-Based Spatial-Temporal Fusion Graph Convolution Network for Traffic Flow Prediction</a></li>
-<li><a href="https://arxiv.org/abs/2607.24887" target="_blank">Mechanisms of Width Scaling in Normalized Residual Networks: The Effective Alignment Dimension</a></li>
-<li><a href="https://arxiv.org/abs/2607.24889" target="_blank">GAUGE: Grading Agent-Built Financial Models Without a Golden Answer</a></li>
-<li><a href="https://arxiv.org/abs/2607.24892" target="_blank">LLM as Forecasting Planner: Training-Free Text Conditioning for Time-Series Foundation Models</a></li>
-<li><a href="https://arxiv.org/abs/2607.24900" target="_blank">Inverse RL Helps Align AI by Imitating Humans</a></li>
-</ul>
-<h3>arXiv cs.RO</h3><ul>
-<li><a href="https://arxiv.org/abs/2607.24860" target="_blank">Egocentric Station Holding of Robotic Fish in Unknown Turbulent Background Flow</a></li>
-<li><a href="https://arxiv.org/abs/2607.24863" target="_blank">Steeringless Drifting: Differential-Torque Control of a Four-Wheel Independently Driven Vehicle</a></li>
-<li><a href="https://arxiv.org/abs/2607.24959" target="_blank">Amortising Trajectory Optimisation for Residual MPC via Implicit Contact Differentiation</a></li>
-<li><a href="https://arxiv.org/abs/2607.25049" target="_blank">FIRMGrasp: A Friction-Informed Risk Margin for Robust Grasp Synthesis</a></li>
-<li><a href="https://arxiv.org/abs/2607.25053" target="_blank">Motion Generation With Environmental Constraints</a></li>
-<li><a href="https://arxiv.org/abs/2607.25056" target="_blank">Hybrid Artificial Potential Fields and Spatio-Temporal Transformers for Real-Time AUV Path Planning</a></li>
-<li><a href="https://arxiv.org/abs/2607.25071" target="_blank">Input Shaping for Point-to-Point Motion with a Continuum Robot Arm</a></li>
-<li><a href="https://arxiv.org/abs/2607.25138" target="_blank">Reactive 3D Motion Planning for a Franka Arm via Star-World Workspace Reshaping</a></li>
-</ul>
-<h3>Robohub</h3><ul>
-<li><a href="https://robohub.org/surviving-the-paper-deluge-a-one-year-study-in-learning-from-demonstration/" target="_blank">Surviving the paper deluge: a one-year study in learning from demonstration</a></li>
-</ul>
-<h3>The Robot Report</h3><ul>
-<li><a href="https://www.therobotreport.com/industry-reacts-fcc-ban-u-s-imports-new-humanoid-quadruped-robots/" target="_blank">Experts react to FCC limits on U.S. imports of new humanoid and mobile robots</a></li>
-<li><a href="https://www.therobotreport.com/registration-is-open-for-robobusiness-2026/" target="_blank">Registration is open for RoboBusiness 2026</a></li>
-<li><a href="https://www.therobotreport.com/envue-medical-develops-robotic-feeding-tube-placement-system/" target="_blank">ENvue Medical develops robotic feeding tube placement system</a></li>
-<li><a href="https://www.therobotreport.com/agency-tool-company-wants-to-make-ota-software-updates-easier/" target="_blank">Agency Tool Company wants to make OTA software updates easier</a></li>
-</ul>
-<h3>NVIDIA Blog - Robotics</h3><ul>
-<li><a href="https://blogs.nvidia.com/blog/build-ai-with-nvidia-jetson/" target="_blank">Powerful Compute So Compact, It’s Clutch — Build AI Anywhere With NVIDIA Jetson</a></li>
-</ul>
-<h3>The Guardian - AI</h3><ul>
-<li><a href="https://www.theguardian.com/business/2026/jul/29/asian-chip-firms-shares-plunge-ai-sell-off-stock-markets" target="_blank">FTSE 100 hits record high despite AI sell-off</a></li>
-<li><a href="https://www.theguardian.com/technology/2026/jul/30/atlassian-tightens-tracking-of-staff-ai-use-as-other-technology-firms-encourage-tokenmaxxing" target="_blank">Atlassian tightens tracking of staff AI use as other technology firms encourage ‘tokenmaxxing’</a></li>
-<li><a href="https://www.theguardian.com/technology/2026/jul/29/rogue-openai-agent-that-hacked-startup-tried-to-attack-other-firms" target="_blank">Rogue OpenAI agent that hacked startup tried to attack other firms</a></li>
-<li><a href="https://www.theguardian.com/uk-news/2026/jul/29/datacentre-projects-fees-grid-access-connection-queue-ofgem" target="_blank">Datacentre projects could face fees for grid access to ease connection queue, Ofgem says</a></li>
-<li><a href="https://www.theguardian.com/global-development/2026/jul/29/uk-immigration-ai-age-facial-recognition-child-refugees-adults-bias" target="_blank">AI tool will lead to more child refugees being treated as adults, charity warns</a></li>
-<li><a href="https://www.theguardian.com/australia-news/2026/jul/29/queensland-northern-territory-reject-ai-datacentre-renewable-energy" target="_blank">Queensland and NT reject Labor’s push to ensure that power-hungry AI datacentres use renewable energy</a></li>
-<li><a href="https://www.theguardian.com/us-news/2026/jul/28/how-to-keep-your-claude-chats-and-google-files-private" target="_blank">How to keep your Claude chats and Google files private</a></li>
-<li><a href="https://www.theguardian.com/technology/2026/jul/28/apple-second-ever-5tn-company-as-investors-flee-ai-stocks" target="_blank">Apple becomes second $5tn company as investors flee AI stocks</a></li>
-</ul>
+
+  <div class="searchbar">
+    <input type="text" id="searchInput" placeholder="Search today's stories…" oninput="filterCards()">
   </div>
-  <footer>Generated automatically via GitHub Actions + Gemini · RSS sources curated for AI &amp; Robotics</footer>
+  <div class="count-line" id="countLine">45 stories from 11 sources</div>
+
+  <div class="grid" id="grid">
+    
+        <article class="card" data-search="disrupting a criminal scam operation openai disrupted a cambodia-based scam operation using chatgpt to support investment, romance, gambling, and impersonation schemes. openai news">
+          <div class="card-top">
+            <span class="badge">OpenAI News</span>
+          </div>
+          <h2 class="card-title">Disrupting a Criminal Scam Operation</h2>
+          <p class="card-summary">OpenAI disrupted a Cambodia-based scam operation using ChatGPT to support investment, romance, gambling, and impersonation schemes.</p>
+          <a class="card-link" href="https://openai.com/index/disrupting-malicious-uses-of-ai-criminal-scam-operation" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="advancing responsible ai across europe openai shares how its safety, security, transparency, and provenance practices support responsible ai governance in europe. the work will continue as the eu ai act advances. openai news">
+          <div class="card-top">
+            <span class="badge">OpenAI News</span>
+          </div>
+          <h2 class="card-title">Advancing responsible AI across Europe</h2>
+          <p class="card-summary">OpenAI shares how its safety, security, transparency, and provenance practices support responsible AI governance in Europe. The work will continue as the EU AI Act advances.</p>
+          <a class="card-link" href="https://openai.com/index/advancing-responsible-ai-across-europe" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="building abundant intelligence a full-stack approach to making advanced ai more capable, more affordable, and more widely useful. openai news">
+          <div class="card-top">
+            <span class="badge">OpenAI News</span>
+          </div>
+          <h2 class="card-title">Building abundant intelligence</h2>
+          <p class="card-summary">A full-stack approach to making advanced AI more capable, more affordable, and more widely useful.</p>
+          <a class="card-link" href="https://openai.com/index/building-abundant-intelligence" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="univé builds an ai-ready workforce see how univé built an ai-ready workforce with chatgpt enterprise by combining leadership, responsible governance, and employee-led innovation to transform work at scale. openai news">
+          <div class="card-top">
+            <span class="badge">OpenAI News</span>
+          </div>
+          <h2 class="card-title">Univé builds an AI-ready workforce</h2>
+          <p class="card-summary">See how Univé built an AI-ready workforce with ChatGPT Enterprise by combining leadership, responsible governance, and employee-led innovation to transform work at scale.</p>
+          <a class="card-link" href="https://openai.com/index/unive" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="science one framework: a verifiable autonomous research framework via chain-of-evidence general science google research blog">
+          <div class="card-top">
+            <span class="badge">Google Research Blog</span>
+          </div>
+          <h2 class="card-title">Science One Framework: A verifiable autonomous research framework via Chain-of-Evidence</h2>
+          <p class="card-summary">General Science</p>
+          <a class="card-link" href="https://research.google/blog/science-one-framework-a-verifiable-autonomous-research-framework-via-chain-of-evidence/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="tim cook hints at icloud plus tier for ai power users apple may allow users to pay to increase their ai usage limits. during an earnings call on thursday, apple ceo tim cook said that he believes people will want to use apple intelligence and the upcoming siri ai &quot;a lot,&quot; adding that &quot;we will have some kind of upgrade possibilities on icloud plus where people […] the verge - ai">
+          <div class="card-top">
+            <span class="badge">The Verge - AI</span>
+          </div>
+          <h2 class="card-title">Tim Cook hints at iCloud Plus tier for AI power users</h2>
+          <p class="card-summary">Apple may allow users to pay to increase their AI usage limits. During an earnings call on Thursday, Apple CEO Tim Cook said that he believes people will want to use Apple Intelligence and the upcoming Siri AI &quot;a lot,&quot; adding that &quot;we will have some kind of upgrade possibilities on iCloud Plus where people […]</p>
+          <a class="card-link" href="https://www.theverge.com/tech/973552/apple-ceo-tim-cook-icloud-plus-ai" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="the loss of situational awareness i am not by any means an expert at finance but i think i do now have some advice for people who are: do not name your hedge fund anything that will be hilarious if it blows up. don&#x27;t use a name like &quot;long-term capital management&quot; or &quot;amaranth advisors&quot; (named for the floral symbol for […] the verge - ai">
+          <div class="card-top">
+            <span class="badge">The Verge - AI</span>
+          </div>
+          <h2 class="card-title">The loss of Situational Awareness</h2>
+          <p class="card-summary">I am not by any means an expert at finance but I think I do now have some advice for people who are: Do not name your hedge fund anything that will be hilarious if it blows up. Don&#x27;t use a name like &quot;Long-Term Capital Management&quot; or &quot;Amaranth Advisors&quot; (named for the floral symbol for […]</p>
+          <a class="card-link" href="https://www.theverge.com/ai-artificial-intelligence/973467/ai-bet-situational-awareness-oops-stonks" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="linkedin actually adds a ‘seems like ai slop’ button a lot of content on linkedin might seem like ai slop, and now, you&#x27;ll be able to report those posts. as part of a series of updates to reduce the volume of ai slop on the platform, linkedin is introducing an actual button that lets you flag a post as something that &quot;seems like ai […] the verge - ai">
+          <div class="card-top">
+            <span class="badge">The Verge - AI</span>
+          </div>
+          <h2 class="card-title">LinkedIn actually adds a ‘seems like AI slop’ button</h2>
+          <p class="card-summary">A lot of content on LinkedIn might seem like AI slop, and now, you&#x27;ll be able to report those posts. As part of a series of updates to reduce the volume of AI slop on the platform, LinkedIn is introducing an actual button that lets you flag a post as something that &quot;Seems like AI […]</p>
+          <a class="card-link" href="https://www.theverge.com/ai-artificial-intelligence/973384/linkedin-seems-like-ai-slop-button" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="google deepmind’s new ai model can control a robot’s entire body google deepmind says the latest version of its gemini robotics ai model can &quot;control entire humanoid robots.&quot; while the previous model focused on controlling a humanoid robot&#x27;s upper body, gemini robotics 2 now supports &quot;whole-body motions&quot; ranging from its feet to fingertips, according to an announcement on thursday. the new model will allow humanoid robots […] the verge - ai">
+          <div class="card-top">
+            <span class="badge">The Verge - AI</span>
+          </div>
+          <h2 class="card-title">Google DeepMind’s new AI model can control a robot’s entire body</h2>
+          <p class="card-summary">Google DeepMind says the latest version of its Gemini Robotics AI model can &quot;control entire humanoid robots.&quot; While the previous model focused on controlling a humanoid robot&#x27;s upper body, Gemini Robotics 2 now supports &quot;whole-body motions&quot; ranging from its feet to fingertips, according to an announcement on Thursday. The new model will allow humanoid robots […]</p>
+          <a class="card-link" href="https://www.theverge.com/tech/973276/google-deepmind-gemini-robotics-2-whole-body" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="friend re-launches its ai pendant with a speaker that talks to you, for twice the price do you remember friend? the friend that launched an ai pendant, spent $1.8 million of its $2.5 million in funding to acquire friend.com, and plastered the nyc subway with ads promoting artificial companionship? yeah well, if you didn&#x27;t remember, friend is back. and now, it&#x27;s twice the price. this morning, friend launched a new ad […] the verge - ai">
+          <div class="card-top">
+            <span class="badge">The Verge - AI</span>
+          </div>
+          <h2 class="card-title">Friend re-launches its AI pendant with a speaker that talks to you, for twice the price</h2>
+          <p class="card-summary">Do you remember Friend? The Friend that launched an AI pendant, spent $1.8 million of its $2.5 million in funding to acquire friend.com, and plastered the NYC subway with ads promoting artificial companionship? Yeah well, if you didn&#x27;t remember, Friend is back. And now, it&#x27;s twice the price. This morning, Friend launched a new ad […]</p>
+          <a class="card-link" href="https://www.theverge.com/gadgets/973163/friend-re-launches-its-ai-pendant-with-a-speaker-that-talks-to-you-for-twice-the-price" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="sam altman isn’t the only one who wants to pump the brakes on ai after years of pushing full speed ahead on ai, openai ceo sam altman says maybe it’s time for the ai industry to “pace” itself. the comments came just days after one of openai’s own models broke out of its test environment and got tangled up in a breach at hugging face — though as equity’s hosts point out, sloppy security seems to have […] techcrunch - ai">
+          <div class="card-top">
+            <span class="badge">TechCrunch - AI</span>
+          </div>
+          <h2 class="card-title">Sam Altman isn’t the only one who wants to pump the brakes on AI</h2>
+          <p class="card-summary">After years of pushing full speed ahead on AI, OpenAI CEO Sam Altman says maybe it’s time for the AI industry to “pace” itself. The comments came just days after one of OpenAI’s own models broke out of its test environment and got tangled up in a breach at Hugging Face — though as Equity’s hosts point out, sloppy security seems to have […]</p>
+          <a class="card-link" href="https://techcrunch.com/video/sam-altman-isnt-the-only-one-who-wants-to-pump-the-brakes-on-ai/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="snapchat no longer rewards fully ai-generated spotlight content snapchat has adjusted its recommendation systems to ensure that only videos created by real people are eligible for spotlight recommendations, taking a stance against ai slop. techcrunch - ai">
+          <div class="card-top">
+            <span class="badge">TechCrunch - AI</span>
+          </div>
+          <h2 class="card-title">Snapchat no longer rewards fully AI-generated Spotlight content</h2>
+          <p class="card-summary">Snapchat has adjusted its recommendation systems to ensure that only videos created by real people are eligible for Spotlight recommendations, taking a stance against AI slop.</p>
+          <a class="card-link" href="https://techcrunch.com/2026/07/31/snapchat-no-longer-rewards-fully-ai-generated-spotlight-content/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="siri ai could come with a paywall for power users apple ceo tim cook envisions users being able to buy more compute for siri ai via apple&#x27;s existing icloud+ subscriptions. techcrunch - ai">
+          <div class="card-top">
+            <span class="badge">TechCrunch - AI</span>
+          </div>
+          <h2 class="card-title">Siri AI could come with a paywall for power users</h2>
+          <p class="card-summary">Apple CEO Tim Cook envisions users being able to buy more compute for Siri AI via Apple&#x27;s existing iCloud+ subscriptions.</p>
+          <a class="card-link" href="https://techcrunch.com/2026/07/31/siri-ai-could-come-with-a-paywall-for-power-users/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="spacex won’t remove all of xai’s unpermitted turbines for another year spacex is building a new power plant for xai&#x27;s colossus data centers, but it won&#x27;t remove existing, unpermitted turbines for many more months. techcrunch - ai">
+          <div class="card-top">
+            <span class="badge">TechCrunch - AI</span>
+          </div>
+          <h2 class="card-title">SpaceX won’t remove all of xAI’s unpermitted turbines for another year</h2>
+          <p class="card-summary">SpaceX is building a new power plant for xAI&#x27;s Colossus data centers, but it won&#x27;t remove existing, unpermitted turbines for many more months.</p>
+          <a class="card-link" href="https://techcrunch.com/2026/07/31/spacex-wont-remove-all-of-xais-unpermitted-turbines-for-another-year/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="smallest.ai raises $13m to build ultra-fast voice ai that sounds genuinely human the startup is building voice models designed to make ai phone calls pass the turing test. techcrunch - ai">
+          <div class="card-top">
+            <span class="badge">TechCrunch - AI</span>
+          </div>
+          <h2 class="card-title">Smallest.ai raises $13M to build ultra-fast voice AI that sounds genuinely human</h2>
+          <p class="card-summary">The startup is building voice models designed to make AI phone calls pass the Turing test.</p>
+          <a class="card-link" href="https://techcrunch.com/2026/07/31/smallest-ai-raises-13m-to-build-ultra-fast-voice-ai-that-sounds-genuinely-human/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="high school defends staying silent while boys made ai nudes of 59 classmates gaps in laws may help pennsylvania high school escape ai nudes scandal. ars technica - ai">
+          <div class="card-top">
+            <span class="badge">Ars Technica - AI</span>
+          </div>
+          <h2 class="card-title">High school defends staying silent while boys made AI nudes of 59 classmates</h2>
+          <p class="card-summary">Gaps in laws may help Pennsylvania high school escape AI nudes scandal.</p>
+          <a class="card-link" href="https://arstechnica.com/tech-policy/2026/07/high-school-defends-staying-silent-while-boys-made-ai-nudes-of-59-classmates/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="ai scammers outperform humans when it comes to building trust the ai chatbot was more effective at creating “exploitable trust” than the humans. ars technica - ai">
+          <div class="card-top">
+            <span class="badge">Ars Technica - AI</span>
+          </div>
+          <h2 class="card-title">AI scammers outperform humans when it comes to building trust</h2>
+          <p class="card-summary">The AI chatbot was more effective at creating “exploitable trust” than the humans.</p>
+          <a class="card-link" href="https://arstechnica.com/security/2026/07/ai-scammers-outperform-humans-when-it-comes-to-building-trust/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="how a yale ai-cheating dispute became a 13-count federal lawsuit a disputed exam, an unreliable detector, and one very late apple pages file. ars technica - ai">
+          <div class="card-top">
+            <span class="badge">Ars Technica - AI</span>
+          </div>
+          <h2 class="card-title">How a Yale AI-cheating dispute became a 13-count federal lawsuit</h2>
+          <p class="card-summary">A disputed exam, an unreliable detector, and one very late Apple Pages file.</p>
+          <a class="card-link" href="https://arstechnica.com/tech-policy/2026/07/how-a-yale-ai-cheating-dispute-became-a-13-count-federal-lawsuit/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="chrome may get faster updates with no restart required the last two versions of chrome have included more patches than the previous 23 combined. ars technica - ai">
+          <div class="card-top">
+            <span class="badge">Ars Technica - AI</span>
+          </div>
+          <h2 class="card-title">Chrome may get faster updates with no restart required</h2>
+          <p class="card-summary">The last two versions of Chrome have included more patches than the previous 23 combined.</p>
+          <a class="card-link" href="https://arstechnica.com/ai/2026/07/chrome-may-get-faster-updates-with-no-restart-required/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="google reveals gemini robotics 2.0, promising improved dexterity and safety gemini robotics 2 includes three models, but only one is publicly available right now. ars technica - ai">
+          <div class="card-top">
+            <span class="badge">Ars Technica - AI</span>
+          </div>
+          <h2 class="card-title">Google reveals Gemini Robotics 2.0, promising improved dexterity and safety</h2>
+          <p class="card-summary">Gemini Robotics 2 includes three models, but only one is publicly available right now.</p>
+          <a class="card-link" href="https://arstechnica.com/ai/2026/07/google-reveals-gemini-robotics-2-0-promising-improved-dexterity-and-safety/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="probing the origins of reasoning performance: representational quality for mathematical problem-solving in rl vs. sft fine-tuned models arxiv:2607.26119v1 announce type: new abstract: large reasoning models trained via reinforcement learning (rl) have been increasingly shown to outperform their supervised fine-tuned (sft) counterparts on mathematical reasoning tasks; yet the mechanistic basis for this advantage remains unclear. we therefore ask, what internal representational differences enable rl models&#x27; superior performance? our work presents two converging lines of evidence: first, linear probes trained on layer-wise hidden… arxiv cs.ai">
+          <div class="card-top">
+            <span class="badge">arXiv cs.AI</span>
+          </div>
+          <h2 class="card-title">Probing the Origins of Reasoning Performance: Representational Quality for Mathematical Problem-Solving in RL vs. SFT Fine-Tuned Models</h2>
+          <p class="card-summary">arXiv:2607.26119v1 Announce Type: new Abstract: Large reasoning models trained via reinforcement learning (RL) have been increasingly shown to outperform their supervised fine-tuned (SFT) counterparts on mathematical reasoning tasks; Yet the mechanistic basis for this advantage remains unclear. We therefore ask, what internal representational differences enable RL models&#x27; superior performance? Our work presents two converging lines of evidence: First, linear probes trained on layer-wise hidden…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.26119" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="even more deception: objective misalignment in mixed-motive llm multi-agent systems arxiv:2607.26120v1 announce type: new abstract: large language models (llms)-powered multi-agent systems are increasingly deployed in mixed-motive environments, where agents operate under asymmetric information and strategic deception due to conflicting or hidden objectives. in these settings, misalignment with collective goals becomes a central concern. we propose a novel framework for evaluating objective misalignment using the social deduction game werewolf, modifying the objective of a… arxiv cs.ai">
+          <div class="card-top">
+            <span class="badge">arXiv cs.AI</span>
+          </div>
+          <h2 class="card-title">Even More Deception: Objective Misalignment in Mixed-Motive LLM Multi-Agent Systems</h2>
+          <p class="card-summary">arXiv:2607.26120v1 Announce Type: new Abstract: Large Language Models (LLMs)-powered multi-agent systems are increasingly deployed in mixed-motive environments, where agents operate under asymmetric information and strategic deception due to conflicting or hidden objectives. In these settings, misalignment with collective goals becomes a central concern. We propose a novel framework for evaluating objective misalignment using the social deduction game Werewolf, modifying the objective of a…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.26120" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="clinlens: towards long-horizon coding agents for longitudinal multimodal clinical data science arxiv:2607.26155v1 announce type: new abstract: clinical data-science agents must transform heterogeneous longitudinal records into auditable analyses, yet existing benchmarks largely isolate medical question answering, structured-table reasoning, or generic scientific repositories. we introduce clinlens, a benchmark of 200 executable tasks over five linked mimic resources spanning structured electronic health records, notes, electrocardiograms, chest radiographs, and echocardiograms. a 4 x 5… arxiv cs.ai">
+          <div class="card-top">
+            <span class="badge">arXiv cs.AI</span>
+          </div>
+          <h2 class="card-title">ClinLens: Towards Long-Horizon Coding Agents for Longitudinal Multimodal Clinical Data Science</h2>
+          <p class="card-summary">arXiv:2607.26155v1 Announce Type: new Abstract: Clinical data-science agents must transform heterogeneous longitudinal records into auditable analyses, yet existing benchmarks largely isolate medical question answering, structured-table reasoning, or generic scientific repositories. We introduce CLINLENS, a benchmark of 200 executable tasks over five linked MIMIC resources spanning structured electronic health records, notes, electrocardiograms, chest radiographs, and echocardiograms. A 4 x 5…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.26155" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="when benchmark inferences do not compose: projectibility in ai evaluation arxiv:2607.26159v1 announce type: new abstract: an ai benchmark result rarely reaches a consequential claim in one step. evaluators generalize it to further cases, interpret it as evidence of capability, extrapolate it to new tasks, transport it to another system or site, and combine it with assumptions about human review and downstream consequences. validity-centred approaches require evidence for each claim. this paper identifies a further epistemic problem: warranted links don&#x27;t… arxiv cs.ai">
+          <div class="card-top">
+            <span class="badge">arXiv cs.AI</span>
+          </div>
+          <h2 class="card-title">When benchmark inferences do not compose: Projectibility in AI evaluation</h2>
+          <p class="card-summary">arXiv:2607.26159v1 Announce Type: new Abstract: An AI benchmark result rarely reaches a consequential claim in one step. Evaluators generalize it to further cases, interpret it as evidence of capability, extrapolate it to new tasks, transport it to another system or site, and combine it with assumptions about human review and downstream consequences. Validity-centred approaches require evidence for each claim. This paper identifies a further epistemic problem: warranted links don&#x27;t…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.26159" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="guideskill: evolving executable llm agent skills for guideline-grounded clinical reasoning arxiv:2607.26160v1 announce type: new abstract: clinical practice guidelines (cpgs) encode diagnostic criteria, but llm systems typically retrieve guideline text or absorb it through training rather than execute its rules. we introduce guideskill, an external reasoning layer that compiles disease-specific criteria into executable functions returning ordinal diagnostic-support scores. guideskill-zero is initialized from guidelines, while guideskill-evo uses case--diagnosis pairs to refine… arxiv cs.ai">
+          <div class="card-top">
+            <span class="badge">arXiv cs.AI</span>
+          </div>
+          <h2 class="card-title">GuideSkill: Evolving Executable LLM Agent Skills for Guideline-Grounded Clinical Reasoning</h2>
+          <p class="card-summary">arXiv:2607.26160v1 Announce Type: new Abstract: Clinical practice guidelines (CPGs) encode diagnostic criteria, but LLM systems typically retrieve guideline text or absorb it through training rather than execute its rules. We introduce GuideSkill, an external reasoning layer that compiles disease-specific criteria into executable functions returning ordinal diagnostic-support scores. GuideSkill-Zero is initialized from guidelines, while GuideSkill-Evo uses case--diagnosis pairs to refine…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.26160" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="recursive transformers for semiconductor thermo-mechanical reliability arxiv:2607.27251v1 announce type: new abstract: transformer-based surrogate models are increasingly used to replace expensive first-principles simulation in engineering design. but conventional transformer architectures are often over parameterized for the small, low-dimensional datasets typical of engineering design spaces, where large simulation data is expensive to generate. under these conditions, excess parameter capacity leads to overfitting rather than improved accuracy, while also… arxiv cs.lg">
+          <div class="card-top">
+            <span class="badge">arXiv cs.LG</span>
+          </div>
+          <h2 class="card-title">Recursive transformers for semiconductor thermo-mechanical reliability</h2>
+          <p class="card-summary">arXiv:2607.27251v1 Announce Type: new Abstract: Transformer-based surrogate models are increasingly used to replace expensive first-principles simulation in engineering design. But conventional transformer architectures are often over parameterized for the small, low-dimensional datasets typical of engineering design spaces, where large simulation data is expensive to generate. Under these conditions, excess parameter capacity leads to overfitting rather than improved accuracy, while also…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27251" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="regularizing modality contribution drift in multimodal continual learning arxiv:2607.27260v1 announce type: new abstract: multimodal continual learning (mmcl) aims to learn emerging knowledge from multimodal data while preserving knowledge. to mitigate forgetting, current mmcl methods usually focus on cross-modal representation alignment or semantic similarity, but they overlook whether the relative contributions of individual modalities and their interactions remain stable across incremental tasks. we term this decision-level shift modality contribution drift (mcd)… arxiv cs.lg">
+          <div class="card-top">
+            <span class="badge">arXiv cs.LG</span>
+          </div>
+          <h2 class="card-title">Regularizing modality contribution drift in multimodal continual learning</h2>
+          <p class="card-summary">arXiv:2607.27260v1 Announce Type: new Abstract: Multimodal continual learning (MMCL) aims to learn emerging knowledge from multimodal data while preserving knowledge. To mitigate forgetting, current MMCL methods usually focus on cross-modal representation alignment or semantic similarity, but they overlook whether the relative contributions of individual modalities and their interactions remain stable across incremental tasks. We term this decision-level shift Modality Contribution Drift (MCD)…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27260" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="dotime: a synthetic benchmark generator for interventional and counterfactual time series arxiv:2607.27263v1 announce type: new abstract: most benchmarks for causal inference over time series are observational, small, or domain-specific, leaving interventional and counterfactual estimation under-served exactly where it matters most, such as in healthcare, policy evaluation, and climate science. we introduce \textbf{dotime}, an open, scalable, and theoretically grounded generator of multivariate temporal structural causal models (tscms) with interventions, released as the… arxiv cs.lg">
+          <div class="card-top">
+            <span class="badge">arXiv cs.LG</span>
+          </div>
+          <h2 class="card-title">DoTime: A Synthetic Benchmark Generator for Interventional and Counterfactual Time Series</h2>
+          <p class="card-summary">arXiv:2607.27263v1 Announce Type: new Abstract: Most benchmarks for causal inference over time series are observational, small, or domain-specific, leaving interventional and counterfactual estimation under-served exactly where it matters most, such as in healthcare, policy evaluation, and climate science. We introduce \textbf{DoTime}, an open, scalable, and theoretically grounded generator of multivariate temporal structural causal models (TSCMs) with interventions, released as the…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27263" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="platformbid: an auto-bidding benchmark from a unified advertising platform&#x27;s perspective arxiv:2607.27265v1 announce type: new abstract: real-time bidding is central to computational advertising, comprising three elements: supply side platform (ssp) selling ad impressions, demand side platform (dsp) bidding for advertisers, and ad exchange conducting auctions between them. traditional auto-bidding algorithms focus solely on the dsp side, maximizing advertiser conversions by adjusting bids against competitors. however, current big ad platforms, such as social media and e-commerce… arxiv cs.lg">
+          <div class="card-top">
+            <span class="badge">arXiv cs.LG</span>
+          </div>
+          <h2 class="card-title">PlatformBid: An Auto-Bidding Benchmark from a Unified Advertising Platform&#x27;s Perspective</h2>
+          <p class="card-summary">arXiv:2607.27265v1 Announce Type: new Abstract: Real-time bidding is central to computational advertising, comprising three elements: Supply Side Platform (SSP) selling ad impressions, Demand Side Platform (DSP) bidding for advertisers, and Ad Exchange conducting auctions between them. Traditional auto-bidding algorithms focus solely on the DSP side, maximizing advertiser conversions by adjusting bids against competitors. However, current big ad platforms, such as social media and e-commerce…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27265" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="beyond kv reconstruction: functional reconstruction for mla draft models in speculative decoding arxiv:2607.27269v1 announce type: new abstract: multi-head latent attention (mla) is increasingly important for long-context llm inference because compact latent states replace the growing key-value (kv) cache and reduce decoding memory traffic. yet most capable open checkpoints use multi-head or grouped-query attention (mha/gqa), so conversion is needed to obtain mla&#x27;s cache efficiency without retraining from scratch. speculative decoding offers complementary acceleration, but its speedup… arxiv cs.lg">
+          <div class="card-top">
+            <span class="badge">arXiv cs.LG</span>
+          </div>
+          <h2 class="card-title">Beyond KV Reconstruction: Functional Reconstruction for MLA Draft Models in Speculative Decoding</h2>
+          <p class="card-summary">arXiv:2607.27269v1 Announce Type: new Abstract: Multi-head latent attention (MLA) is increasingly important for long-context LLM inference because compact latent states replace the growing key-value (KV) cache and reduce decoding memory traffic. Yet most capable open checkpoints use multi-head or grouped-query attention (MHA/GQA), so conversion is needed to obtain MLA&#x27;s cache efficiency without retraining from scratch. Speculative decoding offers complementary acceleration, but its speedup…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27269" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="it&#x27;s not just more demos: counterfactual action sensitivity coverage for data-efficient robust robot imitation arxiv:2607.27261v1 announce type: new abstract: visuomotor imitation learning has demonstrated success for manipulation tasks. however, the trained policies remain brittle to visual `nuisances&#x27;, with even minor task-preserving variations such as lighting, distractions or changes in colour result in heavy degradation of the trained policy&#x27;s performance. while increasing data diversity can improve robustness, it is unclear which additional demonstrations are informative for a particular trained… arxiv cs.ro">
+          <div class="card-top">
+            <span class="badge">arXiv cs.RO</span>
+          </div>
+          <h2 class="card-title">It&#x27;s Not Just More Demos: Counterfactual Action Sensitivity Coverage for Data-Efficient Robust Robot Imitation</h2>
+          <p class="card-summary">arXiv:2607.27261v1 Announce Type: new Abstract: Visuomotor imitation learning has demonstrated success for manipulation tasks. However, the trained policies remain brittle to visual `nuisances&#x27;, with even minor task-preserving variations such as lighting, distractions or changes in colour result in heavy degradation of the trained policy&#x27;s performance. While increasing data diversity can improve robustness, it is unclear which additional demonstrations are informative for a particular trained…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27261" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="simulation of surgical suturing using position-based dynamics and the material point method for robot reinforcement learning arxiv:2607.27494v1 announce type: new abstract: recent advances in robotics research have created a strong demand for high-performance simulators. surgical robotics simulation faces unique challenges due to the need to model diverse objects, such as rigid instruments, soft tissue, and fluids. while many studies simulate sutures or soft tissue independently, only a few have considered the complete soft-tissue suturing scenario, including the contact between sutures and deformable tissue during… arxiv cs.ro">
+          <div class="card-top">
+            <span class="badge">arXiv cs.RO</span>
+          </div>
+          <h2 class="card-title">Simulation of Surgical Suturing Using Position-Based Dynamics and the Material Point Method for Robot Reinforcement Learning</h2>
+          <p class="card-summary">arXiv:2607.27494v1 Announce Type: new Abstract: Recent advances in robotics research have created a strong demand for high-performance simulators. Surgical robotics simulation faces unique challenges due to the need to model diverse objects, such as rigid instruments, soft tissue, and fluids. While many studies simulate sutures or soft tissue independently, only a few have considered the complete soft-tissue suturing scenario, including the contact between sutures and deformable tissue during…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27494" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="corrigible assistance in one round: pragmatic-pedagogic best response arxiv:2607.27508v1 announce type: new abstract: assistance games formalize human-robot collaboration under asymmetric information: the human knows the goal, while the robot must infer it from observation and interaction in order to assist effectively. in general, computing optimal assistance game strategies online is intractable, since exact solutions require planning in a pomdp. we identify a class of assistance games in which pragmatic-pedagogic reasoning resolves goal uncertainty in a single… arxiv cs.ro">
+          <div class="card-top">
+            <span class="badge">arXiv cs.RO</span>
+          </div>
+          <h2 class="card-title">Corrigible Assistance in One Round: Pragmatic-Pedagogic Best Response</h2>
+          <p class="card-summary">arXiv:2607.27508v1 Announce Type: new Abstract: Assistance games formalize human-robot collaboration under asymmetric information: the human knows the goal, while the robot must infer it from observation and interaction in order to assist effectively. In general, computing optimal assistance game strategies online is intractable, since exact solutions require planning in a POMDP. We identify a class of assistance games in which pragmatic-pedagogic reasoning resolves goal uncertainty in a single…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27508" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="failure detection for surgical robot imitation policies via flow-matching world modeling arxiv:2607.27511v1 announce type: new abstract: imitation learning has shown increasing promise for autonomous robotic surgery, yet safe deployment remains challenging due to the safety-critical nature of surgical tasks and the complexity and variability of surgical environments. failure detection is therefore an essential safeguard, but its development remains difficult due to the challenges of scarce failure data, highly variable manipulation dynamics, and the need to balance missed… arxiv cs.ro">
+          <div class="card-top">
+            <span class="badge">arXiv cs.RO</span>
+          </div>
+          <h2 class="card-title">Failure Detection for Surgical Robot Imitation Policies via Flow-Matching World Modeling</h2>
+          <p class="card-summary">arXiv:2607.27511v1 Announce Type: new Abstract: Imitation learning has shown increasing promise for autonomous robotic surgery, yet safe deployment remains challenging due to the safety-critical nature of surgical tasks and the complexity and variability of surgical environments. Failure detection is therefore an essential safeguard, but its development remains difficult due to the challenges of scarce failure data, highly variable manipulation dynamics, and the need to balance missed…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27511" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="cross-embodiment transfer via behavior-aligned representations arxiv:2607.27549v1 announce type: new abstract: recent progress in large-scale imitation learning for robot manipulation has been driven by leveraging datasets across a wide range of robot embodiments. however, achieving significant cross-embodiment transfer is often still challenging. in this work, we study the role of using behavior-aligned representations (e.g., object bounding boxes, language motions, end-effector traces of robot motion) in vision-language-action (vla) models to promote… arxiv cs.ro">
+          <div class="card-top">
+            <span class="badge">arXiv cs.RO</span>
+          </div>
+          <h2 class="card-title">Cross-Embodiment Transfer via Behavior-Aligned Representations</h2>
+          <p class="card-summary">arXiv:2607.27549v1 Announce Type: new Abstract: Recent progress in large-scale imitation learning for robot manipulation has been driven by leveraging datasets across a wide range of robot embodiments. However, achieving significant cross-embodiment transfer is often still challenging. In this work, we study the role of using behavior-aligned representations (e.g., object bounding boxes, language motions, end-effector traces of robot motion) in vision-language-action (VLA) models to promote…</p>
+          <a class="card-link" href="https://arxiv.org/abs/2607.27549" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="researchers develop modular nanorobot illustration of the versatile nanorobot. it is 150 times smaller than the diameter of a human hair. (illustration: marina bräm) by angelika jacobs nanorobots sound like science fiction: tiny machines for medicine, the environment, or industry. in fact, nanorobotics has become a rapidly growing field of research. it is considered a promising approach, for example, […] robohub">
+          <div class="card-top">
+            <span class="badge">Robohub</span>
+          </div>
+          <h2 class="card-title">Researchers develop modular nanorobot</h2>
+          <p class="card-summary">Illustration of the versatile nanorobot. It is 150 times smaller than the diameter of a human hair. (Illustration: Marina Bräm) By Angelika Jacobs Nanorobots sound like science fiction: tiny machines for medicine, the environment, or industry. In fact, nanorobotics has become a rapidly growing field of research. It is considered a promising approach, for example, […]</p>
+          <a class="card-link" href="https://robohub.org/researchers-develop-modular-nanorobot/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="procore technologies acquires dronedeploy for $845m procore will integrate dronedeploy&#x27;s visual intelligence technology to link the digital world with physical construction sites. the post procore technologies acquires dronedeploy for $845m appeared first on the robot report . the robot report">
+          <div class="card-top">
+            <span class="badge">The Robot Report</span>
+          </div>
+          <h2 class="card-title">Procore Technologies acquires DroneDeploy for $845M</h2>
+          <p class="card-summary">Procore will integrate DroneDeploy&#x27;s visual intelligence technology to link the digital world with physical construction sites. The post Procore Technologies acquires DroneDeploy for $845M appeared first on The Robot Report .</p>
+          <a class="card-link" href="https://www.therobotreport.com/procore-technologies-acquires-dronedeploy-845m/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="5 physical ai infrastructure platforms shaping robotics in 2026 these five platforms address different challenges and provide the basis for the emerging physical ai tech stack, according to lightwheel. the post 5 physical ai infrastructure platforms shaping robotics in 2026 appeared first on the robot report . the robot report">
+          <div class="card-top">
+            <span class="badge">The Robot Report</span>
+          </div>
+          <h2 class="card-title">5 Physical AI infrastructure platforms shaping robotics in 2026</h2>
+          <p class="card-summary">These five platforms address different challenges and provide the basis for the emerging physical AI tech stack, according to Lightwheel. The post 5 Physical AI infrastructure platforms shaping robotics in 2026 appeared first on The Robot Report .</p>
+          <a class="card-link" href="https://www.therobotreport.com/5-physical-ai-infrastructure-platforms-shaping-robotics-in-2026/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="doordash gains faa certification to operate its own drone delivery program the faa approval came nearly a year after doordash unveiled its delivery robot and reflects its increasing interest in building automation in-house. the post doordash gains faa certification to operate its own drone delivery program appeared first on the robot report . the robot report">
+          <div class="card-top">
+            <span class="badge">The Robot Report</span>
+          </div>
+          <h2 class="card-title">DoorDash gains FAA certification to operate its own drone delivery program</h2>
+          <p class="card-summary">The FAA approval came nearly a year after DoorDash unveiled its delivery robot and reflects its increasing interest in building automation in-house. The post DoorDash gains FAA certification to operate its own drone delivery program appeared first on The Robot Report .</p>
+          <a class="card-link" href="https://www.therobotreport.com/doordash-gains-faa-certification-to-operate-its-own-drone-delivery-program/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="teradyne robotics revenue rises 33% year over year in q2 teradyne robotics said growth in the u.s. and in ai were big drivers for its revenue increase in the second quarter of 2026. the post teradyne robotics revenue rises 33% year over year in q2 appeared first on the robot report . the robot report">
+          <div class="card-top">
+            <span class="badge">The Robot Report</span>
+          </div>
+          <h2 class="card-title">Teradyne Robotics revenue rises 33% year over year in Q2</h2>
+          <p class="card-summary">Teradyne Robotics said growth in the U.S. and in AI were big drivers for its revenue increase in the second quarter of 2026. The post Teradyne Robotics revenue rises 33% year over year in Q2 appeared first on The Robot Report .</p>
+          <a class="card-link" href="https://www.therobotreport.com/teradyne-robotics-revenue-rises-33-year-over-year-in-q2/" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="ai labels to be compulsory on authentic-looking content under eu rules companies must ensure people know when they are interacting with artificially generated images, audio and text designed to look real from apparently conspiring to steal elections to abusing staff or performing embarrassing dance moves, the last few years have seen plenty of fake content made about politicians intended to malign its targets and mislead the public. now eu rules aim to stem the flood of this deceptive content: starting from sunday, artificially generated images, audio and text… the guardian - ai">
+          <div class="card-top">
+            <span class="badge">The Guardian - AI</span>
+          </div>
+          <h2 class="card-title">AI labels to be compulsory on authentic-looking content under EU rules</h2>
+          <p class="card-summary">Companies must ensure people know when they are interacting with artificially generated images, audio and text designed to look real From apparently conspiring to steal elections to abusing staff or performing embarrassing dance moves, the last few years have seen plenty of fake content made about politicians intended to malign its targets and mislead the public. Now EU rules aim to stem the flood of this deceptive content: starting from Sunday, artificially generated images, audio and text…</p>
+          <a class="card-link" href="https://www.theguardian.com/technology/2026/jul/31/ai-labels-to-be-compulsory-on-authentic-looking-content-under-eu-rules" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="$2m crime novel deal collapses amid questions over ai use agents withdraw jerry falade’s hotly anticipated debut after saying they can no longer authenticate ‘how the manuscript evolved’ a high-profile publishing deal for a debut crime novel has collapsed after doubts emerged over whether artificial intelligence played a role in writing it. the hotly anticipated manuscript call me, i’ll hide the body, by jerry falade, was withdrawn from sale by its agent despite reportedly receiving an offer for more than $2m (£1.5m) from minotaur, owned by macmillan… the guardian - ai">
+          <div class="card-top">
+            <span class="badge">The Guardian - AI</span>
+          </div>
+          <h2 class="card-title">$2m crime novel deal collapses amid questions over AI use</h2>
+          <p class="card-summary">Agents withdraw Jerry Falade’s hotly anticipated debut after saying they can no longer authenticate ‘how the manuscript evolved’ A high-profile publishing deal for a debut crime novel has collapsed after doubts emerged over whether artificial intelligence played a role in writing it. The hotly anticipated manuscript Call Me, I’ll Hide the Body, by Jerry Falade, was withdrawn from sale by its agent despite reportedly receiving an offer for more than $2m (£1.5m) from Minotaur, owned by Macmillan…</p>
+          <a class="card-link" href="https://www.theguardian.com/books/2026/jul/31/crime-novel-deal-collapses-questions-ai-jerry-falade-call-me-ill-hide-the-body" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="what does protest look like in 2026? | fiona katauskas you could say we’re in a polycrisis see more of fiona katauskas’s cartoons here continue reading... the guardian - ai">
+          <div class="card-top">
+            <span class="badge">The Guardian - AI</span>
+          </div>
+          <h2 class="card-title">What does protest look like in 2026? | Fiona Katauskas</h2>
+          <p class="card-summary">You could say we’re in a polycrisis See more of Fiona Katauskas’s cartoons here Continue reading...</p>
+          <a class="card-link" href="https://www.theguardian.com/commentisfree/picture/2026/aug/01/what-does-protest-look-like-in-2026" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="ftse 100 on track for best month since first us attacks on iran five months ago – as it happened live, rolling coverage as london’s biggest companies defy middle east disruption and uk petrol prices rise to around £1.60 per litre, the highest since donald trump ordered renewed strikes the story piquing the interest of the financial press this morning is that of leopold aschenbrenner , the ai wunderkind (he’s german-born) who has been forced to sell off his fund in a fire sale after the ai boom ran out of steam. the 24-year-old had persuaded a lot of people to give him a lot of money for a… the guardian - ai">
+          <div class="card-top">
+            <span class="badge">The Guardian - AI</span>
+          </div>
+          <h2 class="card-title">FTSE 100 on track for best month since first US attacks on Iran five months ago – as it happened</h2>
+          <p class="card-summary">Live, rolling coverage as London’s biggest companies defy Middle East disruption and UK petrol prices rise to around £1.60 per litre, the highest since Donald Trump ordered renewed strikes The story piquing the interest of the financial press this morning is that of Leopold Aschenbrenner , the AI Wunderkind (he’s German-born) who has been forced to sell off his fund in a fire sale after the AI boom ran out of steam. The 24-year-old had persuaded a lot of people to give him a lot of money for a…</p>
+          <a class="card-link" href="https://www.theguardian.com/business/live/2026/jul/31/bp-sell-north-sea-ai-record-korea-kospi-stock-market-latest-news-updates" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+
+        <article class="card" data-search="mccarthyism has returned to the united states – and this time it’s even more dangerous | judith levine trump’s campaign of repression echoes the red scare. but now the government has bigger ambitions and more powerful tools there are many parallels between the first mccarthy era, roughly 1946 to 1956, and trump’s campaign of political repression, his own updated mccarthyism. both regimes crafted a monster of quasi-facts and innuendo and fed it with fear: an enemy within, well-organized and financed, secretive and violent, allied with evil foreigners and bent on overthrowing capitalism, democracy… the guardian - ai">
+          <div class="card-top">
+            <span class="badge">The Guardian - AI</span>
+          </div>
+          <h2 class="card-title">McCarthyism has returned to the United States – and this time it’s even more dangerous | Judith Levine</h2>
+          <p class="card-summary">Trump’s campaign of repression echoes the red scare. But now the government has bigger ambitions and more powerful tools There are many parallels between the first McCarthy era, roughly 1946 to 1956, and Trump’s campaign of political repression, his own updated McCarthyism. Both regimes crafted a monster of quasi-facts and innuendo and fed it with fear: an enemy within, well-organized and financed, secretive and violent, allied with evil foreigners and bent on overthrowing capitalism, democracy…</p>
+          <a class="card-link" href="https://www.theguardian.com/commentisfree/2026/jul/31/mccarthyism-trump-surveillance-red-scare" target="_blank" rel="noopener">Read full article &rarr;</a>
+        </article>
+  </div>
+  <div class="empty-state" id="emptyState">No stories match your search.</div>
+
+  <footer>Generated automatically via GitHub Actions + Gemini &middot; RSS sources curated for AI &amp; Robotics</footer>
 </div>
+
+<script>
+  function filterCards() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    const cards = document.querySelectorAll('.card');
+    let visible = 0;
+    cards.forEach(card => {
+      const match = card.dataset.search.includes(q);
+      card.style.display = match ? 'flex' : 'none';
+      if (match) visible++;
+    });
+    document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+    document.getElementById('countLine').textContent =
+      q ? (visible + ' matching stories') : ('45 stories from 11 sources');
+  }
+</script>
 </body>
 </html>
