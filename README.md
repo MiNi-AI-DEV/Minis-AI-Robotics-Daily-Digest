@@ -86,7 +86,8 @@ digest_agent.py
         ├── De-dupes against state.json (so you never get repeats)
         ├── Sends the fresh items to Gemini → gets back a grouped Markdown digest
         ├── Renders a styled HTML page → output/digest.html
-        └── Sends output/digest.html to your Telegram chat via the Bot API
+        └── Sends output/digest.html
+ to your Telegram chat via the Bot API
 ```
 
 After each run, the workflow commits the updated `state.json` (list of already-seen article IDs) and the latest `output/digest.html` back into the repo, so the next run knows what's new.
